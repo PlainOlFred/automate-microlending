@@ -1,6 +1,11 @@
 import csv
 from pathlib import Path
 
+def calculate_present_value(future_value, remaining_months, annual_discount_rate):
+  '''Calculate the present value'''
+  present_value = future_value / (1 + (annual_discount_rate / 12)) ** remaining_months
+  return present_value
+
 # Loan prices to be analyze
 loan_costs = [500, 600, 200, 1000, 450]
 
@@ -31,7 +36,7 @@ future_value = loan.get("future_value")
 remaining_months = loan.get("remaining_months")
 cost = loan.get("loan_price")
 
-present_value = future_value / (1 + (annual_discount_rate / 12)) ** remaining_months
+present_value = calculate_present_value(future_value, remaining_months, annual_discount_rate) 
 
 if present_value >= cost:
   print("Yes, the loan is worth at least the cost to buy it.")
