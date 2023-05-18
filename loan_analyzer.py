@@ -35,9 +35,9 @@ def analyze_loans(loans, annual_discount_rate):
   else: 
     print(f"No loans to be Analyzed")
 
-  #To hold that cost $500 or less
+  # list for target loans
   inexpensive_loans = []
-  
+  loans_to_buy = []
   loan_count = 0
 
   # gather loans less than 500 in inexpensive_loans
@@ -58,12 +58,15 @@ def analyze_loans(loans, annual_discount_rate):
 
     if present_value >= cost:
       print(f"Yes, loan number {loan_count} is worth at least the cost to buy it.")
+      loans_to_buy.append(loan)
     else:
         print(f"No, loan number {loan_count} is too expensive and not worth the price.")
 
   print(f"The inexpensive loans are: {inexpensive_loans}")
   # write inexpensive loan report
   write_loans_to_report("inexpensive_loans.csv", inexpensive_loans)
+  # write loans tto buy report
+  write_loans_to_report("loans_to_buy.csv", loans_to_buy)
 
   return 0
 
