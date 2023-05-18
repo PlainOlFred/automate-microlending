@@ -19,7 +19,7 @@ def write_loans_to_report(file, loans_to_write):
       csvwriter.writerow(loan.values())
   return 0
 
-def analyze_loans(loans, annual_discount_rate):
+def analyze_loans(loans, annual_discount_rate, buy_thershold=500):
   '''Analyze loan - print cost summary; compare present value; write to inexpensive loan report'''
   loan_costs = [loan.get('loan_price') for loan in loans ]
 
@@ -46,7 +46,7 @@ def analyze_loans(loans, annual_discount_rate):
     loan_count = loan_count + 1
   
     # check for inexpensive loan
-    if loan["loan_price"] <= 500:
+    if loan["loan_price"] <= buy_thershold:
       inexpensive_loans.append(loan)
 
     # calculate present value
